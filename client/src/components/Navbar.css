@@ -1,0 +1,31 @@
+.navbar { position:fixed; top:0; left:0; right:0; z-index:1000; padding:20px 0; transition:all 0.4s ease; }
+.navbar--scrolled { background:rgba(5,10,16,0.92); backdrop-filter:blur(24px); border-bottom:1px solid rgba(255,255,255,0.06); padding:14px 0; box-shadow:0 4px 40px rgba(0,0,0,0.4); }
+.navbar__inner { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+
+.navbar__logo { display:flex; align-items:center; gap:10px; font-size:1.5rem; font-weight:800; color:#fff; text-decoration:none; transition:opacity 0.3s; }
+.navbar__logo:hover { opacity:0.85; }
+.logo-icon { font-size:1.4rem; }
+.logo-text { background:linear-gradient(135deg,#1d9bf0,#00e5ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+.navbar__links { display:flex; align-items:center; list-style:none; gap:8px; }
+.navbar__link { padding:8px 16px; color:var(--clr-text-muted); font-weight:500; font-size:0.95rem; border-radius:100px; transition:all 0.2s; text-decoration:none; }
+.navbar__link:hover, .navbar__link.active { color:#fff; background:rgba(29,155,240,0.12); }
+.navbar__cta { font-size:0.9rem; padding:10px 24px; }
+
+.navbar__hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+.navbar__hamburger span { display:block; width:24px; height:2px; background:#fff; border-radius:2px; transition:all 0.3s; }
+.navbar__hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.navbar__hamburger.open span:nth-child(2) { opacity:0; }
+.navbar__hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+.navbar__mobile { display:none; flex-direction:column; align-items:flex-start; gap:8px; padding:0 24px 24px; background:rgba(5,10,16,0.98); backdrop-filter:blur(24px); max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
+.navbar__mobile--open { max-height:400px; }
+.navbar__mobile-link { display:block; padding:12px 0; color:var(--clr-text-muted); font-weight:500; font-size:1.05rem; width:100%; border-bottom:1px solid var(--clr-border); text-decoration:none; }
+.navbar__mobile-link:hover { color:#fff; }
+
+@media (max-width:900px) {
+  .navbar__links { display:none; }
+  .navbar__cta { display:none; }
+  .navbar__hamburger { display:flex; }
+  .navbar__mobile { display:flex; }
+}
