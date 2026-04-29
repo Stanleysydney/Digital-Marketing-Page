@@ -1,3 +1,4 @@
+ 
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
@@ -5,6 +6,7 @@ import "./Navbar.css";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -12,6 +14,22 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("dark-mode");
+    const initial = saved === "true";
+    setDarkMode(initial);
+    document.documentElement.dataset.theme = initial ? "dark" : "light";
+  }, []);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => {
+      const next = !prev;
+      document.documentElement.dataset.theme = next ? "dark" : "light";
+      window.localStorage.setItem("dark-mode", next ? "true" : "false");
+      return next;
+    });
+  };
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -41,16 +59,22 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <a href="#contact" className="btn-primary navbar__cta">
-          Get Started <i className="fa-solid fa-arrow-right" />
-        </a>
+        <div className="navbar__actions">
+          <a href="#contact" className="btn-primary navbar__cta">
+            Buy Now <i className="fa-solid fa-bolt" />
+          </a>
+          <button className={`navbar__theme-toggle ${darkMode ? "active" : ""}`} onClick={toggleDarkMode} aria-label="Toggle dark mode">
+            <i className={darkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"} />
+            <span>{darkMode ? "Light" : "Dark"}</span>
+          </button>
+        </div>
         <button className={`navbar__hamburger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           <span /><span /><span />
         </button>
       </div>
       <div className={`navbar__mobile ${menuOpen ? "navbar__mobile--open" : ""}`}>
         {navLinks.map((link) => (
-          <div key={link.label} onClick={() => setMenuOpen(false)}>
+          <div key={link.label} className="navbar__mobile-item" onClick={() => setMenuOpen(false)}>
             {link.href.startsWith("#") ? (
               <a href={link.href} className="navbar__mobile-link">{link.label}</a>
             ) : (
@@ -58,7 +82,11 @@ export default function Navbar() {
             )}
           </div>
         ))}
-        <a href="#contact" className="btn-primary" onClick={() => setMenuOpen(false)}>Get Started</a>
+        <a href="#contact" className="btn-primary navbar__mobile-cta" onClick={() => setMenuOpen(false)}>Buy Now</a>
+        <button className="navbar__theme-toggle navbar__mobile-toggle" onClick={() => { toggleDarkMode(); setMenuOpen(false); }}>
+          <i className={darkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"} />
+          <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>
+        </button>
       </div>
     </nav>
   );

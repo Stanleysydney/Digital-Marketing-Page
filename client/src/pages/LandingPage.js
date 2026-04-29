@@ -110,7 +110,7 @@ export default function LandingPage() {
               Join <strong>2 million+</strong> marketers growing their brands with DigiPulse.
             </p>
             <div className="hero__ctas animate-fadeUp delay-4">
-              <a href="#contact" className="btn-primary">Start Free Today <i className="fa-solid fa-arrow-right" /></a>
+              <a href="#contact" className="btn-primary">Buy Now <i className="fa-solid fa-bolt" /></a>
               <a href="#services" className="btn-outline">Explore Services <i className="fa-solid fa-compass" /></a>
             </div>
             <div className="hero__proof animate-fadeUp delay-5">

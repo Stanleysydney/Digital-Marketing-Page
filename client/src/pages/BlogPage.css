@@ -10,7 +10,7 @@
 .bp-card:hover .bp-card__img-wrap img { transform:scale(1.06); }
 .bp-card__cat { position:absolute; top:14px; left:14px; color:#fff; font-size:0.72rem; font-weight:700; padding:4px 12px; border-radius:100px; letter-spacing:1px; text-transform:uppercase; }
 .bp-card__body { padding:24px; display:flex; flex-direction:column; flex:1; }
-.bp-card__body h2 { font-size:1.05rem; font-weight:700; margin-bottom:10px; line-height:1.4; color:#fff; }
+.bp-card__body h2 { font-size:1.05rem; font-weight:700; margin-bottom:10px; line-height:1.4; color:var(--clr-text); }
 .bp-card__body p { color:var(--clr-text-muted); font-size:0.88rem; line-height:1.7; flex:1; margin-bottom:20px; }
 .bp-card__meta { display:flex; flex-wrap:wrap; gap:12px; font-size:0.78rem; color:var(--clr-text-muted); margin-bottom:16px; border-top:1px solid var(--clr-border); padding-top:16px; }
 .bp-card__meta i { margin-right:4px; }
